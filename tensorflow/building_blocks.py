@@ -221,7 +221,7 @@ def plot_learning_curves(train_session):
     plt.tight_layout()
     plt.show()
 
-def conf_matrix(predictions):
+def conf_matrix(predictions, y_test, class_types):
     ''' Plots conf. matrix and classification report '''
     cm=confusion_matrix(y_test, np.argmax(np.round(predictions), axis=1))
     print("Classification Report:\n")

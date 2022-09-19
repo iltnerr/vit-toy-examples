@@ -21,7 +21,7 @@ num_heads = 4
 mlp_dim = 128
 
 # training
-EPOCHS = 2 # 120 on gpu
+EPOCHS = 3 # 120 on gpu
 
 ##### Load Data #######################################################################################################
 
@@ -128,4 +128,4 @@ train_session = ViT_model.fit(train_ds,
 # Visualization
 plot_learning_curves(train_session)
 pred_class_resnet50 = ViT_model.predict(x_test)
-conf_matrix(pred_class_resnet50)
+conf_matrix(pred_class_resnet50, y_test, class_types)
