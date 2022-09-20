@@ -1,8 +1,7 @@
-print("Script based on https://towardsdatascience.com/implementing-visualttransformer-in-pytorch-184f9f16f632")
+print("Script based on https://github.com/FrancescoSaverioZuppichini/ViT")
 print("This script is not meant to be used as a solution, but rather as a working example to comprehensively examine building blocks of a vision transformer implemenation and how to train it.")
 
 import torch
-import torch.nn.functional as F
 import matplotlib.pyplot as plt
 
 from torch import nn, Tensor
@@ -12,7 +11,7 @@ from einops import rearrange, reduce, repeat
 from einops.layers.torch import Rearrange, Reduce
 from torchsummary import summary
 
-from building_blocks import PatchEmbedding
+from building_blocks import PatchEmbedding, MultiHeadAttention, TransformerEncoderBlock, ViT
 
 
 ##### Hyperparameters ######################################################################################
@@ -36,4 +35,17 @@ print("x.shape: ", x.shape)
 
 patches = rearrange(x, 'b c (h s1) (w s2) -> b (h w) (s1 s2 c)', s1=patch_size, s2=patch_size)
 
-print("Patch Embedding shape: ", PatchEmbedding()(x).shape)
+patches_embedded = PatchEmbedding()(x)
+print("Patch Embedding Shape: ", patches_embedded.shape)
+
+##### Multi-Head Self-Attention ############################################################################
+
+print("Multi-Head Attention Shape: ", MultiHeadAttention()(patches_embedded).shape)
+
+##### Transformer Encoder Block ############################################################################
+
+print("Encoder Block Shape: ", TransformerEncoderBlock()(patches_embedded).shape)
+
+##### Vision Transformer Model #############################################################################
+
+summary(ViT(), (3, 224, 224))
