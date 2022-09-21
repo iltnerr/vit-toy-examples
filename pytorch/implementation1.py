@@ -1,5 +1,5 @@
 print("Script based on https://github.com/FrancescoSaverioZuppichini/ViT")
-print("This script is not meant to be used as a solution, but rather as a working example to comprehensively examine building blocks of a vision transformer implemenation and how to train it.")
+print("This script is not meant to be used as a solution, but rather as a working example to comprehensively examine building blocks of a vision transformer implemenation.")
 
 import torch
 import matplotlib.pyplot as plt
